@@ -1,0 +1,16 @@
+# Logs
+**/logs
+*.log
+
+# Build directories
+/dist
+
+# Dependency/third party directories
+/node_modules
+**/bower_components
+
+# Sass Cache
+/.sass-cache
+
+# Mac File System File
+.DS_Store
