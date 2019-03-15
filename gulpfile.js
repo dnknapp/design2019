@@ -15,6 +15,9 @@ var sourcemaps = require('gulp-sourcemaps');
 var log = require('fancy-log');
 var del = require('del');
 var runSequence = require('run-sequence');
+var nunjucksRender = require('gulp-nunjucks-render');
+var data = require('gulp-data');
+var fs = require('fs'); // Node File Systen, required to get JSON data to update
 
 
 // Development Tasks
@@ -24,8 +27,8 @@ var runSequence = require('run-sequence');
 gulp.task('browserSync', function() {
     browserSync.init({
         open: 'external',
-        host: 'design2018-dev', //virtual host defined in etc/hosts/ and httpd-vhosts.conf
-        proxy: 'design2018-dev' //virtual host defined in etc/hosts/ and httpd-vhosts.conf
+        host: 'design2019-dev', //virtual host defined in etc/hosts/ and httpd-vhosts.conf
+        proxy: 'design2019-dev' //virtual host defined in etc/hosts/ and httpd-vhosts.conf
         // port: 8080 //new port for browsersync
         
     });
@@ -41,13 +44,35 @@ gulp.task('sass', function(){
     .pipe(browserSync.stream()); //inject CSS updates into browser
 });
 
+gulp.task('nunjucks', function(){
+    var dataFile = './dev/data.json';
+    return gulp.src('dev/pages/**/*.+(html|njk)') // Gets .html and .njk files in pages
+    .pipe(data(function() { // Adding data to Nunjucks
+        return JSON.parse(fs.readFileSync(dataFile));
+      }))
+    .pipe(nunjucksRender({ // Renders template with nunjucks
+      path: ['dev/templates']
+    }))
+    .pipe(gulp.dest('dev')) // output files in dev folder
+});
+
+function reload(done) {
+    browserSync.reload();
+    done();
+  }
+
+
 //Watch files for changes
 gulp.task('watch', function(){
-    gulp.watch('dev/assets/sass/**/*.scss', ['sass']);
-    gulp.watch('dev/**/*.php', browserSync.reload); //reload browser when PHP files are saved
-    gulp.watch('dev/assets/js/**/*.js', browserSync.reload); //reload browser when JS files are saved
+    gulp.watch('dev/assets/sass/**/*.scss', gulp.series('sass'));
+    gulp.watch('dev/**/*.njk', gulp.series('nunjucks'));
+    gulp.watch('dev/**/*.json', gulp.series('nunjucks'));
+    // gulp.watch('dev/**/*.json', browserSync.reload);
+    gulp.watch('dev/**/*.+(html|json)', gulp.series(reload)); //reload browser when HTML or JSON files are updated
+    gulp.watch('dev/assets/js/**/*.js', gulp.series(reload)); //reload browser when JS files are saved
     // Other watchers: js, etc
 });
+
 
 
 // Build Tasks
@@ -86,11 +111,15 @@ gulp.task('clean:dist', function() {
 // ---------------
 
 //Default watch for changes
-gulp.task('default', function(callback) {
-    runSequence(['sass', 'browserSync'], 'watch',
-      callback
-    )
-});
+// gulp.task('default', function(callback) {
+//     runSequence(['sass', 'nunjucks', 'browserSync'], 'watch',
+//       callback
+//     )
+// });
+
+gulp.task('default', 
+    gulp.series('sass', 'nunjucks', gulp.parallel('browserSync', 'watch'))
+);
 
 
 //Optimize and build the site
