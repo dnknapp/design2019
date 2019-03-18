@@ -1,0 +1,81 @@
+/* From HTML5 Boilerplate */
+
+
+
+   html,
+   body,
+   button,
+   input,
+   select,
+   textarea {
+       color: $main-color;
+   }
+   
+   html {
+     box-sizing: border-box;
+   }
+   *, *:before, *:after {
+     box-sizing: inherit;
+   }
+   
+   canvas {
+     width: 100% !important; //Keeping the canvas object in the grid
+     height: auto !important;
+   }
+   
+   /*
+    * Remove text-shadow in selection highlight: h5bp.com/i
+    * These selection declarations have to be separate.
+    * Customize the background color to match your design.
+    */
+   
+   ::-moz-selection {
+       background: $selection-color;
+       text-shadow: none;
+   }
+   
+   ::selection {
+       background: $selection-color;
+       text-shadow: none;
+   }
+   
+   /*
+    * A better looking default horizontal rule
+    */
+   
+   hr {
+       display: block;
+       height: 1px;
+       border: 0;
+       border-top: 1px solid $hr-color;
+       margin: 1em 0;
+       padding: 0;
+   }
+   
+   /*
+    * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+    */
+   
+   img {
+       width: 100%;
+       height: auto;
+       display: block;
+   }
+   
+   /*
+    * Remove default fieldset styles.
+    */
+   
+   fieldset {
+       border: 0;
+       margin: 0;
+       padding: 0;
+   }
+   
+   /*
+    * Allow only vertical resizing of textareas.
+    */
+   
+   textarea {
+       resize: vertical;
+   }

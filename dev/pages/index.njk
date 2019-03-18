@@ -8,12 +8,55 @@
   {{nav.active('home')}}
 
   <div class="gallery">
-    <!-- Loops through "images array -->
-    {% for image in images %}
+    <!-- Loops through "images" array -->
+    {% for image in home.images %}
       <div class="gallery_item">
         <img src="{{image.src}}" alt="{{image.alt}}">
       </div>
     {% endfor %}
   </div>  
+
+  
+  <ul class="list">
+    {% for name in parent.test2.names %}
+      <li>{{name.first}} {{name.last}}</li>
+    {% endfor %}
+  </ul>
+
+<!-- List the names -->
+{% for name in test.names %}
+      <li class="">{{name.first}} {{name.last}}</li>
+{% endfor %}
+
+<!-- List the names, and bold the name if it matches "Steve" -->
+{% for name in test.names %}
+  {% if name.first == 'Steve' %}
+    <p><strong>{{name.first}} {{name.last}}</strong></p>
+    {% else %}
+    <p>{{name.first}} {{name.last}}</p>
+  {% endif %}
+{% endfor %}
+
+<!-- List the names using a macro, and bold the name if it matches "Steve." Can include multiple macros in one file with this method. -->
+{# {% from "macros/namemacro.njk" import nameMacro %}
+  {% for name in test.names %}
+    {{ nameMacro(name.first, name.last) }}
+  {% endfor %}    #}
+
+<!-- List the names using a macro, and bold the name if it matches "Steve." Imports entire macro file. -->
+{% import "macros/namemacro.njk" as names %}
+  {% for name in test.names %}
+    {{ names.nameMacro(name.first, name.last) }}
+  {% endfor %}   
+
+
+<!--
+  <div class="project">
+    {% for content in contents %}
+      <img src="{{content.img_src}}" alt="{{content.img_alt}}">
+      <p>{{content.para}}</p>
+    {% endfor %}
+  </div> 
+  -->
 
 {% endblock %}

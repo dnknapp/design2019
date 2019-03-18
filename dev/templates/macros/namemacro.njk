@@ -1,0 +1,10 @@
+{% macro nameMacro(firstName, lastName) %}
+    
+    {% if firstName == 'Steve' %}
+      <p><strong>{{firstName}} {{lastName}}</strong></p>
+      {% else %}
+      <p>{{firstName}} {{lastName}}</p>
+    {% endif %}
+    
+
+{% endmacro %}

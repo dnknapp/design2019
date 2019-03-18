@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "portfolio",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "dependencies": {
+    "normalize-scss": "^7.0.1"
+  },
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "del": "^4.0.0",

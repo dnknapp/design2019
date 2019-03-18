@@ -1,0 +1,16 @@
+/* Dan Knapp Portfolio Site Styles */
+
+// Normalize CSS
+@import '../../../node_modules/normalize-scss/sass/normalize/import-now';
+
+// Base 
+@import 'base/variables';
+@import 'base/typography';
+
+// Layout
+@import 'layout/footer';
+@import 'layout/header';
+@import 'layout/home';
+@import 'layout/projects';
+
+// Modules 
