@@ -1,0 +1,20 @@
+{# Loop through pages #}
+{% for page in pages %}
+  {% if page.category == "project" %}
+    <a href="{{ page.url }}" class="flex card-hover">  
+      <div class="project-card-container">
+        <img class="project-card-bg" src="{{ page.thumbBgSrc }}" alt="">
+        <img class="project-card-img" src="{{ page.thumbSrc }}" alt="{{ page.thumbAlt }}">
+        <div class="project-card-text">
+          <h4 class="inline">{{ page.title }}</h4>
+          {# Next loop through the tags. REFERENCE THE PREVIOUS LOOP, NOT THE DATA STRUCTURE. ie, "page", not "pages" #}
+          <ul>
+            {% for tag in page.tags %} 
+              <li class="tag">{{ tag }}</li>
+            {% endfor %}
+          </ul>
+        </div>  
+      </div>  
+    </a>
+  {% endif %}
+{% endfor %}

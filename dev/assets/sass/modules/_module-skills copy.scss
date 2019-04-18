@@ -1,0 +1,53 @@
+.skill-card-nav {
+  position: relative;
+}
+
+.btn-skill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.btn-arrow-left {
+  left: 0;
+}
+
+.btn-arrow-right {
+  right: 0;
+}
+
+.btn-skill-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rosybrown;
+}
+.skill-card-container {
+  display: grid;
+  grid-template-columns: 1px; // Faking padding at start and end of list. Filled with :before and :after. 
+  grid-auto-flow: column; // Flow horizontally
+  grid-auto-columns: 16rem; // Width of auto-generated columns
+  grid-gap: 5%;
+  padding: 3rem 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &:before, &:after {
+    content: '';
+    width: 1px; // Match grid-template-columns above.
+  }
+  @include mappy-bp(med) {
+    grid-template-columns: 1rem;
+    grid-auto-columns: 20%;
+    grid-gap: 3rem;
+    &:before, &:after {
+      content: '';
+      width: 1rem; 
+    }
+  }
+}
+
+.skill-card {
+  background-color: $color-alto;
+}

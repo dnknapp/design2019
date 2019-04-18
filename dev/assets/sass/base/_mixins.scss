@@ -1,0 +1,57 @@
+// Convert px to rem for a single value, like font shorthand
+@function calcRem($size) {
+  $remSize: $size / 16;
+  @return #{$remSize}rem;
+}
+
+// Convert px to rem, for multiple values, like padding
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@mixin propRem($property, $values...) {
+  $max: length($values);
+  $remValues: '';
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    @if $value > 0 {
+      $remValues: #{$remValues + $value/16}rem;
+    }
+    @else {
+      $remValues: #{$remValues + $value/16};
+    }
+
+    @if $i < $max {
+      $remValues: #{$remValues + " "};
+    }
+  } 
+  
+  #{$property}: $remValues; 
+}
+
+
+@mixin page-margins($width: 90%) {
+  width: $width;
+  margin-left: auto;
+  margin-right: auto;
+}  
+
+@mixin grid-base($cols) {
+  @include page-margins();
+  display: grid;
+  grid-gap: 3rem;
+  grid-template-columns: 1fr;
+  // justify-items: start;
+  // align-items: start;
+  @include mappy-bp(med) {  
+    grid-template-columns: repeat($cols, 1fr);
+  }
+}
+
+@mixin grid-col($col-start, $col-span) {
+  grid-column: 1;
+  @include mappy-bp(med) {
+    grid-column: $col-start / span $col-span;
+  }
+}

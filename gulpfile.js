@@ -18,6 +18,9 @@ var runSequence = require('run-sequence');
 var nunjucksRender = require('gulp-nunjucks-render');
 var data = require('gulp-data');
 var fs = require('fs'); // Node File Systen, required to get JSON data to update
+var yaml = require('gulp-yaml');
+var jsYAML = require('js-yaml');
+var touch = require('gulp-touch-fd');
 
 
 // Development Tasks
@@ -44,33 +47,58 @@ gulp.task('sass', function(){
     .pipe(browserSync.stream()); //inject CSS updates into browser
 });
 
-gulp.task('nunjucks', function(){
-    var dataFile = './dev/data.json';
+// gulp.task('yaml', function() { // Convert YAML to JSON
+//     return gulp.src('dev/content/**/*.+(yaml|yml)')
+//     .pipe(yaml({ space: 2 }))
+//     .pipe(gulp.dest('dev'))
+// });
+
+// gulp.task('nunjucks', function(){ // Compile pages using data from a JSON source
+//     var dataFile = './dev/test.json';
+//     return gulp.src('dev/pages/**/*.+(html|njk)') // Gets .html and .njk files in pages
+//     .pipe(data(function() { // Adding data to Nunjucks
+//         return JSON.parse(fs.readFileSync(dataFile));
+//       }))
+//     .pipe(nunjucksRender({ // Renders template with nunjucks
+//       path: ['dev/templates']
+//     }))
+//     .pipe(gulp.dest('dev')) // output files in dev folder
+//     .pipe(touch()); // Solves an issue where some changes in templates would not show up
+// });
+
+gulp.task('nunjucks', function(){ // Compile pages using data from a YAML source
+    var dataFile = './dev/data.yaml';
     return gulp.src('dev/pages/**/*.+(html|njk)') // Gets .html and .njk files in pages
     .pipe(data(function() { // Adding data to Nunjucks
-        return JSON.parse(fs.readFileSync(dataFile));
+        return jsYAML.safeLoad(fs.readFileSync(dataFile));
       }))
     .pipe(nunjucksRender({ // Renders template with nunjucks
       path: ['dev/templates']
     }))
     .pipe(gulp.dest('dev')) // output files in dev folder
+    .pipe(touch()); // Solves an issue where some changes in templates would not show up
 });
 
-function reload(done) {
+// function reload(done) {
+//     browserSync.reload();
+//     done();
+//   }
+
+gulp.task('reload', function(done){
     browserSync.reload();
     done();
-  }
-
+})  
 
 //Watch files for changes
 gulp.task('watch', function(){
     gulp.watch('dev/assets/sass/**/*.scss', gulp.series('sass'));
-    gulp.watch('dev/**/*.njk', gulp.series('nunjucks'));
-    gulp.watch('dev/**/*.json', gulp.series('nunjucks'));
-    // gulp.watch('dev/**/*.json', browserSync.reload);
-    gulp.watch('dev/**/*.+(html|json)', gulp.series(reload)); //reload browser when HTML or JSON files are updated
-    gulp.watch('dev/assets/js/**/*.js', gulp.series(reload)); //reload browser when JS files are saved
-    // Other watchers: js, etc
+    gulp.watch('dev/**/*.+(njk|yaml|yml)', gulp.series('nunjucks'));
+    // gulp.watch('dev/content/**/*.+(yaml|yml)', gulp.series('yaml'));
+    // gulp.watch('dev/**/*.json', gulp.series('nunjucks'));
+    // gulp.watch('dev/**/*.+(yaml|yml)', gulp.series('nunjucks', 'reload'));
+    // gulp.watch('dev/**/*.+(html|json|yaml|njk)', gulp.series(reload)); //reload browser when HTML or JSON files are updated
+    gulp.watch('dev/**/*.html', gulp.series('reload')); // reload browser once Nunjucks has compiled the html pages
+    gulp.watch('dev/assets/js/**/*.js', gulp.series('reload')); //reload browser when JS files are saved
 });
 
 

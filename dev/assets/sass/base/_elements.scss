@@ -1,0 +1,66 @@
+img {
+  display: block;
+  object-fit: cover;
+  // width: auto;
+  height: auto;
+  max-width: 100%;
+  // max-height: 100%;
+}
+
+.btn-reset {
+  appearance: none;
+  background: transparent;
+  padding: 0;
+  border: 0;
+  &:focus {
+      outline: 0;
+  }
+}    
+
+.button {
+  display: inline-block;
+  padding: .75rem 1.25rem;
+  color: $color-main;
+  background: #fff;
+  border: 2px solid $color-main;
+  border-radius: 30px;
+  transition: all .2s;
+  &:hover {
+    color: #fff;
+    background: $color-main;
+  }
+}
+// button:focus {
+//   outline:0;
+// }
+
+/* Remove outline for non-keyboard :focus */
+// *:focus:not(.focus-visible) {
+//   outline: none;
+// }
+
+/* Optional: Customize .focus-visible */
+// .focus-visible {
+//   outline-color: lightgreen;
+// }
+
+hr {
+  border-top: 2px solid $color-main;
+  margin: 1rem 0;
+}
+
+ul {
+  padding: 0;
+  margin: 1rem 0;
+  list-style-type: none;
+}
+
+.tag {
+  @extend %font-tiny;
+  display: inline-block;
+  border-radius: 13px;
+  list-style-type: none;
+  background-color: $color-alabaster;
+  padding: .25rem .75rem;
+  margin: 0 .25rem .25rem 0;
+} 

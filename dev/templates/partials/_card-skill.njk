@@ -1,0 +1,22 @@
+<div class="skill-nav-container">
+  <div class="skill-card-container">
+    {# Loop through the skills #}
+    {% for skill in skills %}
+      <article class="skill-card">
+        
+        <div class="skill-card-bg">
+        </div>  
+        <img src="{{ skill.imageSrc }}" alt="{{ skill.imageAlt }}">
+        <div class="skill-card-text">
+          <h6 class="color-roman">{{ skill.title }}</h6>
+          <h5 class="pth pb1">{{ skill.subTitle }}</h5>
+          <p class="mb0">{{ skill.text | safe }}</p>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+  <div class="skill-nav-buttons">
+    <button class="btn-reset btn-arrow-left btn-skill" type="button">L</button>
+    <button class="btn-reset btn-arrow-right btn-skill" type="button">R</button>
+  </div>  
+</div> 

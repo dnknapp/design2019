@@ -1,62 +1,68 @@
-<!-- index.njk -->
 {% extends "layout.njk" %}
+{% set pageTitleSet = "Home" %}
+{# Case Sensitive. Must match title in data file. #}
 
 {% block content %}
-  <h1>This is the index page</h1>
-  
-  {% import "macros/nav-macro.njk" as nav %}
-  {{nav.active('home')}}
+  <section id="home-hero" class="page-margin">
+    <h1 class="display">I make life easier for project managers and developers.</h1>
+  </section>
 
-  <div class="gallery">
-    <!-- Loops through "images" array -->
-    {% for image in home.images %}
-      <div class="gallery_item">
-        <img src="{{image.src}}" alt="{{image.alt}}">
+  <section id="home-skills">
+    {% for page in pages %}
+      {% if page.category == "home" %}
+        <div class="grid-base-6">
+          <div class="grid-col-2-4">
+            <h3 class="mb2">{{ page.skillsIntro }}</h3>
+            <a href="{{ page.skillBtnUrl }}" class="button">{{ page.skillsBtnText }}</a>
+            <hr class="mt6">
+          </div>
+          {# <h3 class="grid-col-2-2">{{ page.skillsIntro }}</h3>
+          <a href="{{ page.skillBtnUrl }}" class="button grid-col-2-2 justify-start">{{ page.skillsBtnText }}</a>
+          <hr class="grid-col-2-2"> #}
+        </div>
+      {% endif %}
+    {% endfor %}
+    {# --- Skill Cards --- #}
+    {% include "partials/_card-skill.njk" %}
+    <div class="grid-base-6">
+      <hr class="grid-col-2-4">
+    </div>
+  </section>
+
+  {# --- Case Study --- #}
+  <section id="home-case-study" class="pt5 pb5">
+    {% for page in pages %}
+      {% if page.category == "caseStudy" %}
+        <div class="grid-base-2">
+          <img src="" alt="">
+          <div>
+            <h3>{{ page.title }}</h3>
+            <p>{{ page.excerpt }}</p>
+            <a href="{{ page.url }}" class="button">{{ page.linkBtnText }}</a>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </section>
+
+  {# --- Project Cards --- #}
+  <section id="home-projects" class="bg-color-1 pt3 pb4">
+    <div class="grid-base-2">
+      {% include "partials/_card-project.njk" %}
+    </div>
+  </section>
+
+  {# --- Bio --- #}
+  <section id="about" class="grid-base-6 pt3 pb4">
+  {% for page in pages %}
+    {% if page.category == "home" %}
+      <div class="grid-col-2-4">
+        <p>{{ page.bio }}</p>
       </div>
-    {% endfor %}
-  </div>  
-
+    {% endif %}
+  {% endfor %}
   
-  <ul class="list">
-    {% for name in parent.test2.names %}
-      <li>{{name.first}} {{name.last}}</li>
-    {% endfor %}
-  </ul>
 
-<!-- List the names -->
-{% for name in test.names %}
-      <li class="">{{name.first}} {{name.last}}</li>
-{% endfor %}
-
-<!-- List the names, and bold the name if it matches "Steve" -->
-{% for name in test.names %}
-  {% if name.first == 'Steve' %}
-    <p><strong>{{name.first}} {{name.last}}</strong></p>
-    {% else %}
-    <p>{{name.first}} {{name.last}}</p>
-  {% endif %}
-{% endfor %}
-
-<!-- List the names using a macro, and bold the name if it matches "Steve." Can include multiple macros in one file with this method. -->
-{# {% from "macros/namemacro.njk" import nameMacro %}
-  {% for name in test.names %}
-    {{ nameMacro(name.first, name.last) }}
-  {% endfor %}    #}
-
-<!-- List the names using a macro, and bold the name if it matches "Steve." Imports entire macro file. -->
-{% import "macros/namemacro.njk" as names %}
-  {% for name in test.names %}
-    {{ names.nameMacro(name.first, name.last) }}
-  {% endfor %}   
-
-
-<!--
-  <div class="project">
-    {% for content in contents %}
-      <img src="{{content.img_src}}" alt="{{content.img_alt}}">
-      <p>{{content.para}}</p>
-    {% endfor %}
-  </div> 
-  -->
+  </section>
 
 {% endblock %}

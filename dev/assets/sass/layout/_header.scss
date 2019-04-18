@@ -1,0 +1,56 @@
+header {
+  position: absolute;
+  width: 100%;
+  background-color: transparent;
+  z-index: 1000;
+}
+
+.header-inner {
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: 3rem 1fr;
+  align-items: flex-start;
+  margin: 1rem;
+}
+.header-nav-button {
+  grid-column-start: 1;
+  height: 40px;
+  width: 40px;
+}
+
+.header-title-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column-start: 2;
+  justify-content: space-between;
+  @include propRem(padding, 6px, 0, 0, 0);
+}
+
+.header-subtitle-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header-subtitle {
+  margin: 0 1rem 0 0;
+  white-space: nowrap;
+}
+
+.header-city {
+  white-space: nowrap;
+}
+
+
+// Main Navigation Menu
+.header-nav-active {
+  position: fixed;
+  height: 100%;
+  // background-color:$color-alabaster;
+  overflow: auto;
+}
+
+nav {
+  width: 50%;
+  margin: 3rem 0 0 0;
+  grid-column-start: 2;
+}

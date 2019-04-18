@@ -1,0 +1,74 @@
+  <div class="gallery">
+    <!-- Loops through "images" array -->
+    {% for image in home.images %}
+      <div class="gallery_item">
+        <img src="{{image.src}}" alt="{{image.alt}}">
+      </div>
+    {% endfor %}
+  </div>  
+
+  
+  <ul class="list">
+    {% for name in parent.test2.names %}
+      <li>{{name.first}} {{name.last}}</li>
+    {% endfor %}
+  </ul>
+
+
+<!-- List the names -->
+{% for name in test.names %}
+      <li class="">{{name.first}} {{name.last}}</li>
+{% endfor %}
+
+<!-- List the names, and bold the name if it matches "Steve" -->
+{% for name in test.names %}
+  {% if name.first == 'Joe' %}
+    <p><strong>{{name.first}} {{name.last}}</strong></p>
+    {% else %}
+    <p>{{name.first}} {{name.last}}</p>
+  {% endif %}
+{% endfor %}
+
+<!-- List the names using a macro, and bold the name if it matches "Steve." Can include multiple macros in one file with this method. -->
+{# {% from "macros/namemacro.njk" import nameMacro %}
+  {% for name in test.names %}
+    {{ nameMacro(name.first, name.last) }}
+  {% endfor %}    #}
+
+<!-- List the names using a macro, and bold the name if it matches "Steve." Imports entire macro file. -->
+{% import "macros/namemacro.njk" as names %}
+  {% for name in test.names %}
+    {{ names.nameMacro(name.first, name.last) }}
+  {% endfor %}   
+
+
+ 
+{# Nested Loop. Works #}
+<ul>
+{# Loop through pages #}
+{% for page in pages %}
+  <li>{{ page.title }}</li>
+  {# Next loop through the tags. REFERENCE THE PREVIOUS LOOP, NOT THE DATA STRUCTURE. ie, "page", not "pages" #}
+  {% for tagName in page.tags %} 
+    <li>{{ tagName.tag }}</li>
+  {% endfor %}
+{% endfor %}
+</ul>
+
+
+
+{# Project Cards from a Macro. Too complicated, using Include instead #}  
+{% import "macros/X_macro_card-project.njk" as projects %}
+  {# Loop through pages #}
+  {% for page in pages %}
+    {# Filter by category, display Title and URL #}
+    {{ projects.cardProject(page.category, page.title, page.url)}}
+    
+    {# Loop through tags. REFERENCE THE PREVIOUS LOOP, NOT THE DATA STRUCTURE. ie, "page", not "pages" #}
+    <ul>
+      {% for tagName in page.tags %}
+        {# Display tags #}
+        {{ projects.cardTags(tagName.tag)}}
+      {% endfor %}
+    </ul>
+  {% endfor %}

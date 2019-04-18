@@ -1,0 +1,43 @@
+<section class="grid-base-6 row-gap-0">
+  {% for page in pages %}
+    {% if page.title == pageTitleSet %}
+      <h1 class="grid-col-2-4">{{ page.title }}</h1>
+      {% for contentItem in page.content %}
+        {% if contentItem.lede.length %}
+          <h3 class="grid-col-2-4">{{contentItem.lede}}</h3>
+        {% endif %}  
+        {% if contentItem.agency.length %}  
+          <div class="grid-col-2-4">
+          <h6 class="color-roman">Agency:</h6>
+          <p class="font-small">{{ contentItem.agency }}</p>
+          </div>
+        {% endif %}
+        {% if contentItem.responsibilities.length %}
+          <div class="font-small grid-col-2-4">
+            <h6 class="color-roman">Responsibilities:</h6>
+            {% for resp in contentItem.responsibilities %}
+              <p class="font-small inline">{{ resp }}, </p>
+              {% if loop.last %}
+                <p class="font-small inline">{{ resp }}</p>
+              {% endif %}
+            {% endfor %}
+            
+          </div>  
+        {% endif %}
+        {% if contentItem.text.length %} 
+          <p class="grid-col-2-4">{{ contentItem.text }}</p>
+        {% endif %}
+        {% for imageItem in contentItem.image %}
+          {% if imageItem.imageSrc.length %}
+            <img src="{{ imageItem.imageSrc }}" alt="{{ imageItem.imageAlt }}" class="grid-col-1-6">
+          {% endif %}
+        {% endfor %}
+        {% for svgItem in contentItem.svg %}
+          {% if svgItem.svgData.length %}
+            <div class="grid-col-1-6 {{svgItem.svgClass}}">{{svgItem.svgData | safe}}</div>
+          {% endif %}
+        {% endfor %}  
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+</section>

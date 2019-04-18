@@ -5,12 +5,20 @@
 
 // Base 
 @import 'base/variables';
+@import 'base/mappy-breakpoints';
+@import 'base/mixins';
+@import 'base/helpers';
+@import 'base/spacing-helpers';
+@import 'base/elements';
 @import 'base/typography';
 
 // Layout
+@import 'layout/general';
 @import 'layout/footer';
 @import 'layout/header';
 @import 'layout/home';
 @import 'layout/projects';
 
 // Modules 
+@import 'modules/module-skills';
+@import 'modules/module-projects';

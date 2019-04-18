@@ -1,0 +1,28 @@
+.hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}
+
+
+
+.card-hover {
+  transition: all .2s;
+  box-shadow: 0 20px 30px -20px rgba(0,0,0,0);
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 30px -20px rgba(0,0,0,.2);
+    h1, h2, h3, h4, h5 {
+      border-bottom: 3px solid $color-main;
+    }
+  }
+}
+
+// Type Alignment
+.inline {
+  display: inline;
+}

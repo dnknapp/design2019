@@ -1,4 +1,84 @@
 body {
     font-size: $font-base;
-    font-family: $font-main;
+    font-family: $font-primary;
+    color: $color-main;
+    font-weight: 400;
 } 
+
+a {
+  text-decoration: none;
+  color: $color-main;
+}
+
+.display {
+  font: 900 calcRem(48)/1 $font-secondary;
+  text-align: center;
+  @include mappy-bp(large) {
+    font-size: 6vw;
+  }
+}
+
+.site-title {
+  font: 900 calcRem(25)/1.3 $font-secondary;
+}
+
+h1, .h1 {
+  font: 900 calcRem(32)/1.4 $font-secondary;
+}
+
+h2, .h2 {
+  font: 400 calcRem(28)/1.2 $font-secondary;
+  margin: 1rem 0;
+}
+
+h3, .h3 {
+  font: 400 calcRem(25)/1.3 $font-secondary;
+}
+
+h4, .h4 {
+  font: 600 calcRem(22)/1.3 $font-primary;
+}
+
+h5, .h5 {
+  font: 600 calcRem(20)/1.4375 $font-primary;
+  margin: 0;
+}
+
+h6, .h6 {
+  font: 600 calcRem(15)/1.4375 $font-primary;
+  margin: 0;
+}
+
+p {
+  font: 400 calcRem(20)/1.4375 $font-primary;
+  margin: 0 0 1em 0;
+  a {
+    text-decoration: underline;
+  }
+}
+
+.font-small, %font-small {
+  font: 400 calcRem(15)/1.4 $font-primary;
+}
+
+.font-tiny, %font-tiny {
+  font: 400 calcRem(13)/1.4 $font-primary;
+}
+
+.button {
+  font: 600 calcRem(15)/1.4 $font-primary;
+}
+
+strong {
+  font-weight: 600;
+}
+
+// Colors
+.color-roman {
+  color: $color-roman;
+}
+
+// Lists 
+.bullet {
+  list-style-type: disc;
+}
