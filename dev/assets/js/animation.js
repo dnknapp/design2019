@@ -1,5 +1,5 @@
 // Toggle Nav Menu
-(function(){
+export function toggleNav(){
   const navButton = document.querySelector(".header-nav-button"),
         nav = document.querySelector("nav"),
         header = document.querySelector("header"),
@@ -33,15 +33,7 @@
             setTimeout(function() {
               nav.classList.toggle("hidden");
               header.classList.toggle("header-nav-active");
-            }, 1000);
+            }, 410);
         }
-
-
-        
-
-
-
-
-
     }, false);
-})();
+};

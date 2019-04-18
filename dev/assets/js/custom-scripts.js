@@ -1,5 +1,5 @@
 // Skills Arrow Button using GSAP
-(function skillScroll(){
+export function skillScroll(){
   const skillContainer = document.querySelector(".skill-card-container");
   
   if (skillContainer) { // Run script only if skillContainer exists
@@ -44,7 +44,7 @@
           }
         },
         onscroll = function(e) {
-          newAmount = skillContainer.scrollLeft;
+          let newAmount = skillContainer.scrollLeft;
           scrollAmount = newAmount;
 
           if (!ticking) {
@@ -87,4 +87,4 @@
               // console.log(maxAmount, scrollAmount);
         }, false);
   }
-})();
+};

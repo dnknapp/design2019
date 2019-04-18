@@ -37,8 +37,9 @@ var cssnano = require('gulp-cssnano');
 var imagemin = require('gulp-imagemin');
 
 // Project Variables
-var jsSRC = 'dev/assets/jsdev/';
+var jsSRC = 'dev/assets/js/';
 var jsFront = 'main.js';
+// var jsLibs = 'libs.js'
 var jsFiles = [ jsFront ];
 var jsURL = 'dev/assets/js';
 
@@ -114,7 +115,7 @@ function js(done){
       .pipe(buffer())
       .pipe( sourcemaps.init({ loadMaps: true }))
       .pipe( uglify())
-      .pipe( sourcemaps.write('.'))
+      // .pipe( sourcemaps.write('.'))
       .pipe(gulp.dest( jsURL ))
       .pipe( browserSync.stream() );
     });
@@ -129,14 +130,14 @@ function reload(done){
 
 //Watch files for changes
 function watch_files(done){
-    gulp.watch('dev/assets/sass/**/*.scss', gulp.series(css));
-    gulp.watch('dev/**/*.+(njk|yaml|yml)', gulp.series(nunjucks));
+    gulp.watch('dev/assets/sass/**/*.scss', css);
+    gulp.watch('dev/**/*.+(njk|yaml|yml)', nunjucks);
     // gulp.watch('dev/content/**/*.+(yaml|yml)', gulp.series('yaml'));
     // gulp.watch('dev/**/*.json', gulp.series('nunjucks'));
     // gulp.watch('dev/**/*.+(yaml|yml)', gulp.series('nunjucks', 'reload'));
     // gulp.watch('dev/**/*.+(html|json|yaml|njk)', gulp.series(reload)); //reload browser when HTML or JSON files are updated
-    gulp.watch('dev/**/*.html', gulp.series(reload)); // reload browser once Nunjucks has compiled the html pages
-    gulp.watch('dev/assets/jsdev/**/*.js', gulp.series(js, reload)); //reload browser when JS files are saved
+    gulp.watch('dev/**/*.html', reload); // reload browser once Nunjucks has compiled the html pages
+    gulp.watch(['dev/assets/js/**/*.js', '!dev/assets/js/**/*.min.js'], gulp.series(js, reload)); //reload browser when JS files are saved
     done();
 };
 
