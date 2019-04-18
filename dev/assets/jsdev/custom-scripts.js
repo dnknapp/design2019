@@ -1,5 +1,5 @@
 // Skills Arrow Button using GSAP
-(function(){
+(function skillScroll(){
   const skillContainer = document.querySelector(".skill-card-container");
   
   if (skillContainer) { // Run script only if skillContainer exists

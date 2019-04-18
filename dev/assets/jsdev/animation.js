@@ -6,7 +6,7 @@
         navTl = new TimelineMax();
         // timeout = null;   
 
-    TweenMax.set("ul>*", {autoAlpha:0, x: +50});
+    TweenMax.set("nav ul>*", {autoAlpha:0, x: +50});
           
     navButton.addEventListener("click", function() {
         
@@ -17,7 +17,7 @@
           let tl = new TimelineMax();
           tl
             .to("header", .2, {backgroundColor:"#ddd"})  
-            .staggerTo("ul>*", .4, {
+            .staggerTo("nav ul>*", .4, {
               autoAlpha:1,
               x: 0,
               ease:Power1.easeInOut
@@ -26,9 +26,9 @@
           // Hide and reset the menu
           let tl = new TimelineMax();
           tl
-            .to("ul>*", .2, {autoAlpha:0})
+            .to("nav ul>*", .2, {autoAlpha:0})
             .to("header", .2, {backgroundColor:"transparent"})
-            .set("ul>*", {x: +50});
+            .set("nav ul>*", {x: +50});
             // .set("header", {backgroundColor:"transparent"});
             setTimeout(function() {
               nav.classList.toggle("hidden");

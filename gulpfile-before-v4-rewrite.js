@@ -1,30 +1,20 @@
-// Load Gulp
+// Include gulp
 var gulp = require('gulp'); 
 
-// CSS Plugins
+// Include Our Plugins
+//var sass = require('gulp-ruby-sass');
 var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-
-// JS plugins
-var uglify = require('gulp-uglify');
-var babelify = require('babelify');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-
-
-// Utility Plugins
-var rename = require('gulp-rename');
-var sourcemaps = require('gulp-sourcemaps');
+var browserSync = require('browser-sync').create();
+var useref = require('gulp-useref');
+var uglify = require('gulp-uglify-es').default;
+var cssnano = require('gulp-cssnano');
 var gulpIf = require('gulp-if');
+var imagemin = require('gulp-imagemin');
+var autoprefixer = require('gulp-autoprefixer');
+var sourcemaps = require('gulp-sourcemaps');
 var log = require('fancy-log');
 var del = require('del');
-
-// Browsersync
-var browserSync = require('browser-sync').create();
-
-
-// Nunjucks plugins
+var runSequence = require('run-sequence');
 var nunjucksRender = require('gulp-nunjucks-render');
 var data = require('gulp-data');
 var fs = require('fs'); // Node File Systen, required to get JSON data to update
@@ -32,32 +22,22 @@ var yaml = require('gulp-yaml');
 var jsYAML = require('js-yaml');
 var touch = require('gulp-touch-fd');
 
-var useref = require('gulp-useref');
-var cssnano = require('gulp-cssnano');
-var imagemin = require('gulp-imagemin');
-
-// Project Variables
-var jsSRC = 'dev/assets/jsdev/';
-var jsFront = 'main.js';
-var jsFiles = [ jsFront ];
-var jsURL = 'dev/assets/js';
-
 
 // Development Tasks
 // -----------------
 
 //Setting up BrowerSync to work with MAMP
-function browser_sync(done) {
+gulp.task('browserSync', function() {
     browserSync.init({
         open: 'external',
         host: 'design2019-dev', //virtual host defined in etc/hosts/ and httpd-vhosts.conf
         proxy: 'design2019-dev' //virtual host defined in etc/hosts/ and httpd-vhosts.conf
         // port: 8080 //new port for browsersync
+        
     });
-    done();
-};
+});
 
-function css(){
+gulp.task('sass', function(){
     return gulp.src('dev/assets/sass/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass()).on('error', sass.logError) // Convert Sass to CSS with gulp-sass
@@ -65,7 +45,7 @@ function css(){
     .pipe(autoprefixer())
     .pipe(gulp.dest('dev/assets/css'))
     .pipe(browserSync.stream()); //inject CSS updates into browser
-};
+});
 
 // gulp.task('yaml', function() { // Convert YAML to JSON
 //     return gulp.src('dev/content/**/*.+(yaml|yml)')
@@ -86,7 +66,7 @@ function css(){
 //     .pipe(touch()); // Solves an issue where some changes in templates would not show up
 // });
 
-function nunjucks(done){ // Compile pages using data from a YAML source
+gulp.task('nunjucks', function(){ // Compile pages using data from a YAML source
     var dataFile = './dev/data.yaml';
     return gulp.src('dev/pages/**/*.+(html|njk)') // Gets .html and .njk files in pages
     .pipe(data(function() { // Adding data to Nunjucks
@@ -96,49 +76,30 @@ function nunjucks(done){ // Compile pages using data from a YAML source
       path: ['dev/templates']
     }))
     .pipe(gulp.dest('dev')) // output files in dev folder
-    .pipe(touch()) // Solves an issue where some changes in templates would not show up
-    done();
-};
+    .pipe(touch()); // Solves an issue where some changes in templates would not show up
+});
 
-function js(done){
-    jsFiles.map( function(entry){
-      return browserify({
-        entries: [jsSRC + entry]
-      })
-      .transform( babelify, { presets: [ '@babel/preset-env']})
-      .bundle()
-      .pipe( source(entry))
-      .pipe( rename({
-        extname: '.min.js'
-      }))
-      .pipe(buffer())
-      .pipe( sourcemaps.init({ loadMaps: true }))
-      .pipe( uglify())
-      .pipe( sourcemaps.write('.'))
-      .pipe(gulp.dest( jsURL ))
-      .pipe( browserSync.stream() );
-    });
-    done();
-};
+// function reload(done) {
+//     browserSync.reload();
+//     done();
+//   }
 
-
-function reload(done){
+gulp.task('reload', function(done){
     browserSync.reload();
     done();
-};  
+})  
 
 //Watch files for changes
-function watch_files(done){
-    gulp.watch('dev/assets/sass/**/*.scss', gulp.series(css));
-    gulp.watch('dev/**/*.+(njk|yaml|yml)', gulp.series(nunjucks));
+gulp.task('watch', function(){
+    gulp.watch('dev/assets/sass/**/*.scss', gulp.series('sass'));
+    gulp.watch('dev/**/*.+(njk|yaml|yml)', gulp.series('nunjucks'));
     // gulp.watch('dev/content/**/*.+(yaml|yml)', gulp.series('yaml'));
     // gulp.watch('dev/**/*.json', gulp.series('nunjucks'));
     // gulp.watch('dev/**/*.+(yaml|yml)', gulp.series('nunjucks', 'reload'));
     // gulp.watch('dev/**/*.+(html|json|yaml|njk)', gulp.series(reload)); //reload browser when HTML or JSON files are updated
-    gulp.watch('dev/**/*.html', gulp.series(reload)); // reload browser once Nunjucks has compiled the html pages
-    gulp.watch('dev/assets/jsdev/**/*.js', gulp.series(js, reload)); //reload browser when JS files are saved
-    done();
-};
+    gulp.watch('dev/**/*.html', gulp.series('reload')); // reload browser once Nunjucks has compiled the html pages
+    gulp.watch('dev/assets/js/**/*.js', gulp.series('reload')); //reload browser when JS files are saved
+});
 
 
 
@@ -185,7 +146,7 @@ gulp.task('clean:dist', function() {
 // });
 
 gulp.task('default', 
-    gulp.series(css, js, nunjucks, gulp.parallel(browser_sync, watch_files))
+    gulp.series('sass', 'nunjucks', gulp.parallel('browserSync', 'watch'))
 );
 
 
