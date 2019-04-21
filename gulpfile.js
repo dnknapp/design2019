@@ -56,7 +56,7 @@ function browser_sync(done) {
         host: 'design2019-dev', //virtual host defined in etc/hosts/ and httpd-vhosts.conf
         proxy: 'design2019-dev', //virtual host defined in etc/hosts/ and httpd-vhosts.conf
         // port: 8080 //new port for browsersync
-        // Below allows Browsersync to work with Turbolinks
+        // Below allows moves Browsersync to head for Ajax loading
         snippetOptions: {
           rule: {
             match: /<\/head>/i,
@@ -79,25 +79,6 @@ function css(){
     .pipe(gulp.dest('dev/assets/css'))
     .pipe(browserSync.stream()); //inject CSS updates into browser
 };
-
-// gulp.task('yaml', function() { // Convert YAML to JSON
-//     return gulp.src('dev/content/**/*.+(yaml|yml)')
-//     .pipe(yaml({ space: 2 }))
-//     .pipe(gulp.dest('dev'))
-// });
-
-// gulp.task('nunjucks', function(){ // Compile pages using data from a JSON source
-//     var dataFile = './dev/test.json';
-//     return gulp.src('dev/pages/**/*.+(html|njk)') // Gets .html and .njk files in pages
-//     .pipe(data(function() { // Adding data to Nunjucks
-//         return JSON.parse(fs.readFileSync(dataFile));
-//       }))
-//     .pipe(nunjucksRender({ // Renders template with nunjucks
-//       path: ['dev/templates']
-//     }))
-//     .pipe(gulp.dest('dev')) // output files in dev folder
-//     .pipe(touch()); // Solves an issue where some changes in templates would not show up
-// });
 
 function nunjucks(done){ // Compile pages using data from a YAML source
     var dataFile = './dev/data.yaml';
@@ -166,10 +147,6 @@ function reload(done){
 function watch_files(done){
     gulp.watch('dev/assets/sass/**/*.scss', css);
     gulp.watch('dev/**/*.+(njk|yaml|yml)', nunjucks);
-    // gulp.watch('dev/content/**/*.+(yaml|yml)', gulp.series('yaml'));
-    // gulp.watch('dev/**/*.json', gulp.series('nunjucks'));
-    // gulp.watch('dev/**/*.+(yaml|yml)', gulp.series('nunjucks', 'reload'));
-    // gulp.watch('dev/**/*.+(html|json|yaml|njk)', gulp.series(reload)); //reload browser when HTML or JSON files are updated
     gulp.watch('dev/**/*.html', reload); // reload browser once Nunjucks has compiled the html pages
     gulp.watch('dev/assets/js/libs.js', gulp.series(libs, reload)); //reload browser when JS files are saved
     gulp.watch(['dev/assets/js/**/*.js', '!dev/assets/js/**/*.min.js', '!dev/assets/js/libs.js'], gulp.series(js, reload)); //reload browser when JS files are saved
@@ -234,7 +211,3 @@ gulp.task('build', function(callback) {
       callback
     )
 });
-
-
-// // Default Task
-// gulp.task('default', ['sass', /*'scripts',*/ 'watch']);
