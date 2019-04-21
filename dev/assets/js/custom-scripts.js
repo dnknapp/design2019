@@ -22,25 +22,27 @@ export function skillScroll(){
         scrollSpeed = .5, 
         ticking = false,
         onresize = function(e) {
-          let mediaMed = window.matchMedia("(min-width: 768px)").matches, // Update when window size changes
-              mediaWide = window.matchMedia("(min-width: 1200px)").matches,
-              newContainerWidth = skillContainer.scrollWidth,
-              newViewportWidth = document.documentElement.clientWidth,
-              newSkillCard = document.querySelector(".skill-card").offsetWidth;
-              
-          maxAmount = newContainerWidth - newViewportWidth;
-          
-          (mediaWide) ? (scrollStep = newSkillCard * 3 + 144) // 3 = number of whole cards displayed, 144 = 3 grid gaps
-          : (mediaMed) ? (scrollStep = newSkillCard * 2 + 96) // 2 = number of whole cards displayed, 96 = 2 grid gaps
-          : (scrollStep = newSkillCard + (newViewportWidth / 20)) // viewportWidth / 20 = 5% grid gap
+          if (skillContainer) {
+            let mediaMed = window.matchMedia("(min-width: 768px)").matches, // Update when window size changes
+                mediaWide = window.matchMedia("(min-width: 1200px)").matches,
+                newContainerWidth = skillContainer.scrollWidth,
+                newViewportWidth = document.documentElement.clientWidth,
+                newSkillCard = document.querySelector(".skill-card").offsetWidth;
+                
+            maxAmount = newContainerWidth - newViewportWidth;
+            
+            (mediaWide) ? (scrollStep = newSkillCard * 3 + 144) // 3 = number of whole cards displayed, 144 = 3 grid gaps
+            : (mediaMed) ? (scrollStep = newSkillCard * 2 + 96) // 2 = number of whole cards displayed, 96 = 2 grid gaps
+            : (scrollStep = newSkillCard + (newViewportWidth / 20)) // viewportWidth / 20 = 5% grid gap
 
-          if (!ticking) {
-            window.requestAnimationFrame(function() { 
-              (newContainerWidth <= newViewportWidth) ? showArrow(skillArrowR, 0) : showArrow(skillArrowR, 1);
-              // console.log(scrollStep);
-              ticking = false;
-            });
-              ticking = true;
+            if (!ticking) {
+              window.requestAnimationFrame(function() { 
+                (newContainerWidth <= newViewportWidth) ? showArrow(skillArrowR, 0) : showArrow(skillArrowR, 1);
+                // console.log(scrollStep);
+                ticking = false;
+              });
+                ticking = true;
+            }
           }
         },
         onscroll = function(e) {

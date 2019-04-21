@@ -2,7 +2,7 @@
 pages:
   - title: Home
     id: "01"
-    url: index.html
+    url: /index.html
     category: home
     skillsIntro: >
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -13,7 +13,7 @@ pages:
 
   - title: A Case Study
     id: "01"
-    url: case-study.html
+    url: /case-study.html
     category: caseStudy
     excerpt: >
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
@@ -21,7 +21,7 @@ pages:
 
   - title: YRLY
     id: "01"
-    url: yrly.html
+    url: /project-yrly.html
     category: project
     tags: [Branding, Website & Web App UX/UI Design, Illustration, Animation]
     thumbSrc: assets/img/thumbs/yrly-thumb.jpg
@@ -182,7 +182,7 @@ pages:
 
   - title: New Hudson Facades
     id: "02"
-    url: newhudson.html
+    url: /project-newhudson.html
     category: project
     tags: [Website UX/UI Design]
     thumbSrc: assets/img/thumbs/nhf2017-thumb.jpg
@@ -197,26 +197,26 @@ pages:
     - text: >
         The site's design builds upon New Hudson Facades' branding, maintaining elements from the previous site, including the black and white header photos and color palette, while updating others, like fonts. Polygons that echo the outline of the company's logo add visual excitement and function as section dividers.
     - image: 
-      - imageSrc: nhf2017-homepage.jpg
+      - imageSrc: /assets/img/newhudson/nhf2017-homepage.jpg
         imageAlt: New Hudson Facades Homepage
     - text: >
         Since we were building the new site concurrently with content being written, a modular system to laying out the pages offered the best design solution. Services, Technology, and Project pages can be built within WordPress out of the appropriate content blocks: introduction, text areas, photos and slideshows, and callouts. Callouts provide users with paths to related projects, news, and other content.
     - image:
-      - imageSrc: nhf2017-pages.jpg
+      - imageSrc: /assets/img/newhudson/nhf2017-pages.jpg
         imageAlt: New Hudson Facades Pages
     - text: >    
         When we built New Hudson Facades' original site we commissioned professional photographs of the company's state-of-the-art factory. New Hudson Facades has continued to expand their photo library and take advantage of great photography. I designed slideshows throughout the site that provide a good user experience even when loaded with many photos, and which also accommodate vertical photos—important for a company building skyscrapers. The slideshows can open a fullscreen photo viewer for closer inspection.
     - image:
-      - imageSrc: 
-        imageAlt: 
+      - imageSrc: /assets/img/newhudson/nhf2017-projects.jpg
+        imageAlt: New Hudson Facades Project Pages
     - image:
-      - imageSrc: 
-        imageAlt:
+      - imageSrc: /assets/img/newhudson/nhf2017-wireframes.jpg
+        imageAlt: New Hudson Facades Wireframes
 
 
   - title: CauseEngine
     id: "03"
-    url: causeengine.html
+    url: /project-causeengine.html
     category: project
     tags: [Website & Web App UX/UI Design, Illustration, Animation]
     thumbSrc: assets/img/thumbs/causeengine-thumb.jpg
@@ -225,33 +225,33 @@ pages:
     thumbBgAlt: Pattern
     content:
     - lede: >
-        CauseEngine is a hub for connecting creative professionals with non-profit organizations that need their help. CauseEngine wanted an updated website to reflect adjustments in their business strategy, as well as to take advantage of changes to user registration in the back-end.
+        CauseEngine was a hub for connecting creative professionals with non-profit organizations that need their help. CauseEngine wanted an updated website to reflect adjustments in their business strategy, as well as to take advantage of changes to user registration in the back-end.
     - agency: Impart Creative
     - responsibilities: [Design, Illustration, Animation]
     - text: >  
         The previous sales approach of CauseEngine was a 50/50 split between appealing to non-profits and creatives. The new approach was to place much more emphasis on the non-profit clients, and extend CauseEngine’s messaging to their consulting services. To achieve this we added success stories near the top of the page, and centered the content of the page around CauseEngine’s value proposition, the Three Ps: People, Platform, and Plan.
     - image:
-      - imageSrc: 
-        imageAlt: 
+      - imageSrc: /assets/img/causeengine/causeengine-homepage.jpg
+        imageAlt: CauseEngine Homepage
     - text: >
         To highlight the Three Ps, I illustrated and animated them as simple concepts.      
     - image:
       - imageSrc: 
         imageAlt:   
     - image:
-      - imageSrc: 
-        imageAlt: 
+      - imageSrc: /assets/img/causeengine/causeengine-pages.jpg
+        imageAlt: CauseEngine Pages
     - text: >
         Building upon the application originally created by O3 World, I designed a new user flow for the process of posting a project on CauseEngine. The new process guides users through a few simple steps while providing numerous supporting hints to help them get exactly the kind of work they need.      
     - image:
-      - imageSrc: 
-        imageAlt:     
+      - imageSrc: /assets/img/causeengine/causeengine-project-builder.jpg
+        imageAlt: CauseEngine Web App
 
 
 
   - title: Vynamic
     id: "04"
-    url: vynamic.html
+    url: /project-vynamic.html
     category: project
     tags: [Mobile App UX Design]
     thumbSrc: assets/img/thumbs/vynamic-thumb.jpg
@@ -266,18 +266,18 @@ pages:
     - text: >  
         After discussions with the Vynamic team about how to develop an app that incentivized organic bonds between longtime and new employees, I created a mobile app concept based on the idea of orbits and gravity. As you get to know your coworkers better, they move into a closer orbit to you. Initial ideas included awarding points for attending company events, or just snapping a selfie with your coworkers while out for a beer.
     - image:
-      - imageSrc: 
-        imageAlt: 
+      - imageSrc: /assets/img/vynamic/vynamic-app.jpg
+        imageAlt: Vynamic App
     - text: > 
         In further revisions and feedback from the Vynamic team, the app was simplified to award points through different quiz games.  
     - image:
-      - imageSrc: 
-        imageAlt: 
+      - imageSrc: /assets/img/vynamic/vynamic-user-flow.jpg
+        imageAlt: Vynamic User Flow
     - text: > 
         Due to unsurety in the evolving feature set the app wasn't pursued past the wireframe phase. I still believe in the general concept, and that with further exploration and more consideration to how points are awarded, the app could achieve its original goal and encourage employees in a large company to create stronger bonds.
     - image:
-      - imageSrc: 
-        imageAlt: 
+      - imageSrc: /assets/img/vynamic/vynamic-prototype-recording-v2.gif
+        imageAlt: Vynamic Prototype
     
 
 skills:

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "portfolio",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "dependencies": {
+    "turbolinks": "^5.2.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
@@ -30,9 +32,11 @@
     "gulp-uglify-es": "^1.0.4",
     "gulp-useref": "^3.1.6",
     "gulp-yaml": "^2.0.3",
+    "hoverintent": "^2.2.0",
     "js-yaml": "^3.12.2",
     "normalize-scss": "^7.0.1",
     "run-sequence": "^2.2.1",
+    "swupjs": "^1.7.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },

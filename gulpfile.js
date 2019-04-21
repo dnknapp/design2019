@@ -39,7 +39,9 @@ var imagemin = require('gulp-imagemin');
 // Project Variables
 var jsSRC = 'dev/assets/js/';
 var jsFront = 'main.js';
+var jsLibrary = 'libs.js';
 // var jsLibs = 'libs.js'
+var jsLibs = [ jsLibrary ];
 var jsFiles = [ jsFront ];
 var jsURL = 'dev/assets/js';
 
@@ -52,9 +54,19 @@ function browser_sync(done) {
     browserSync.init({
         open: 'external',
         host: 'design2019-dev', //virtual host defined in etc/hosts/ and httpd-vhosts.conf
-        proxy: 'design2019-dev' //virtual host defined in etc/hosts/ and httpd-vhosts.conf
+        proxy: 'design2019-dev', //virtual host defined in etc/hosts/ and httpd-vhosts.conf
         // port: 8080 //new port for browsersync
+        // Below allows Browsersync to work with Turbolinks
+        snippetOptions: {
+          rule: {
+            match: /<\/head>/i,
+            fn: function (snippet, match) {
+              return snippet + match;
+            }
+          }
+        }
     });
+    
     done();
 };
 
@@ -101,6 +113,28 @@ function nunjucks(done){ // Compile pages using data from a YAML source
     done();
 };
 
+//I can't figure out how to run different tasks for js/libs.js and js/main.js, so the same task is repeated
+function libs(done){
+  jsLibs.map( function(entry){
+    return browserify({
+      entries: [jsSRC + entry]
+    })
+    .transform( babelify, { presets: [ '@babel/preset-env']})
+    .bundle()
+    .pipe( source(entry))
+    .pipe( rename({
+      extname: '.min.js'
+    }))
+    .pipe(buffer())
+    .pipe( sourcemaps.init({ loadMaps: true }))
+    .pipe( uglify())
+    // .pipe( sourcemaps.write('.'))
+    .pipe(gulp.dest( jsURL ))
+    .pipe( browserSync.stream() );
+  });
+  done();
+};
+
 function js(done){
     jsFiles.map( function(entry){
       return browserify({
@@ -115,7 +149,7 @@ function js(done){
       .pipe(buffer())
       .pipe( sourcemaps.init({ loadMaps: true }))
       .pipe( uglify())
-      // .pipe( sourcemaps.write('.'))
+      .pipe( sourcemaps.write('.'))
       .pipe(gulp.dest( jsURL ))
       .pipe( browserSync.stream() );
     });
@@ -137,7 +171,8 @@ function watch_files(done){
     // gulp.watch('dev/**/*.+(yaml|yml)', gulp.series('nunjucks', 'reload'));
     // gulp.watch('dev/**/*.+(html|json|yaml|njk)', gulp.series(reload)); //reload browser when HTML or JSON files are updated
     gulp.watch('dev/**/*.html', reload); // reload browser once Nunjucks has compiled the html pages
-    gulp.watch(['dev/assets/js/**/*.js', '!dev/assets/js/**/*.min.js'], gulp.series(js, reload)); //reload browser when JS files are saved
+    gulp.watch('dev/assets/js/libs.js', gulp.series(libs, reload)); //reload browser when JS files are saved
+    gulp.watch(['dev/assets/js/**/*.js', '!dev/assets/js/**/*.min.js', '!dev/assets/js/libs.js'], gulp.series(js, reload)); //reload browser when JS files are saved
     done();
 };
 
@@ -186,7 +221,7 @@ gulp.task('clean:dist', function() {
 // });
 
 gulp.task('default', 
-    gulp.series(css, js, nunjucks, gulp.parallel(browser_sync, watch_files))
+    gulp.series(css, libs, js, nunjucks, gulp.parallel(browser_sync, watch_files))
 );
 
 
