@@ -2,25 +2,41 @@
 
 <nav class="hidden "> 
 {# <nav class="test "> #}
-  <ul>
-    <h6>Contents</h6>
-    <hr>
-    {{nav.navList("index.html", "Home", "Home")}}
-    <hr>
-    <h6>Case Study</h6>
-    {{nav.navList("case-study.html", "A Case Study", "A Case Study")}}
-    <hr>
-    <h6>Projects</h6>
-    {% for page in pages %}
+  <div class="nav-replace">
+    <ul>
+      <h6>Contents</h6>
+      <hr>
+      {% for page in pages %}
+        {% if page.category == "home" %}
+          {# page.url and page.title pull from the data file. pageTitleSet is set on each page and must match the title in the data file.  #}
+          {{ nav.navList(page.url, page.title, pageTitleSet)}}
+        {% endif %}
+      {% endfor %}
+      <hr>
       
-      {% if page.category == "project" %}
-        {# page.url and page.title pull from the data file. pageTitleSet is set on each page and must match the title in the data file.  #}
-        {{ nav.navList(page.url, page.title, pageTitleSet)}}
-      {% endif %}
-    {% endfor %}
-    <hr>
-    {{nav.navList("#", "About", "About")}}
-    {{nav.navList("#", "Contact", "Contact")}}
-    <hr>
-  </ul>
+      
+      <h6>Case Study</h6>
+      {% for page in pages %}
+        {% if page.category == "caseStudy" %}
+          {# page.url and page.title pull from the data file. pageTitleSet is set on each page and must match the title in the data file.  #}
+          {{ nav.navList(page.url, page.title, pageTitleSet)}}
+        {% endif %}
+      {% endfor %}
+      <hr>
+      
+      
+      
+      <h6>Projects</h6>
+      {% for page in pages %}
+        {% if page.category == "project" %}
+          {# page.url and page.title pull from the data file. pageTitleSet is set on each page and must match the title in the data file.  #}
+          {{ nav.navList(page.url, page.title, pageTitleSet)}}
+        {% endif %}
+      {% endfor %}
+      <hr>
+      {{nav.navList("/", "About", "")}}
+      {{nav.navList("/", "Contact", "")}}
+      <hr>
+    </ul>
+  </div>
 </nav>

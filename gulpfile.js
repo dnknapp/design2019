@@ -78,6 +78,7 @@ function css(){
     .pipe(autoprefixer())
     .pipe(gulp.dest('dev/assets/css'))
     .pipe(browserSync.stream()); //inject CSS updates into browser
+    // .pipe(browserSync.reload({stream:true}));
 };
 
 function nunjucks(done){ // Compile pages using data from a YAML source
@@ -112,6 +113,7 @@ function libs(done){
     // .pipe( sourcemaps.write('.'))
     .pipe(gulp.dest( jsURL ))
     .pipe( browserSync.stream() );
+    // .pipe(browserSync.reload({stream:true}));
   });
   done();
 };
@@ -133,6 +135,7 @@ function js(done){
       .pipe( sourcemaps.write('.'))
       .pipe(gulp.dest( jsURL ))
       .pipe( browserSync.stream() );
+      // .pipe(browserSync.reload({stream:true}));
     });
     done();
 };

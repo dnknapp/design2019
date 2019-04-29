@@ -24,9 +24,9 @@ pages:
     url: /project-yrly.html
     category: project
     tags: [Branding, Website & Web App UX/UI Design, Illustration, Animation]
-    thumbSrc: assets/img/thumbs/yrly-thumb.jpg
+    thumbSrc: /assets/img/thumbs/yrly-thumb.jpg
     thumbAlt: YRLY
-    thumbBgSrc: assets/img/thumbs/bg-pattern-test.png
+    thumbBgSrc: /assets/img/thumbs/bg-pattern-test.png
     thumbBgAlt: Pattern
     content:
     - lede: >
@@ -36,27 +36,27 @@ pages:
     - text: >
         YRLY’s concept is simple: a tool for non-profits to publish a single-page website with everything they need to report for the year. I strived to make the app as intuitive as possible while allowing users of all levels of design and computer skill to create reports easily. Users can work with presets (templates for page layouts, built-in libraries for colors and font sets) or customize them to better suit their organization. Features targeted specifically to non-profit users include the ability to quickly build tables for financial reporting.
     - image:
-      - imageSrc: assets/img/yrly/yrly-app-diagram.jpg
+      - imageSrc: /assets/img/yrly/yrly-app-diagram.jpg
         imageAlt: YRLY App
     - text: >
         One aspect of the interface that I thought could be improved on from other WYSIWYG apps was to clearly show areas where new content containers can be placed. Below is a user flow showing the creation of a new section in a report. (1) Choosing a layout, (2) adding content boxes, and (3-4) filling boxes with content.
     - image:
-      - imageSrc: assets/img/yrly/yrly-app-user-flow.jpg
+      - imageSrc: /assets/img/yrly/yrly-app-user-flow.jpg
         imageAlt: YRLY User Flow
     - text: >
         Early in the planning process it became obvious that modal windows were the best option for building all of YRLY’s tools within a consistent user interface.
     - image:
-      - imageSrc: assets/img/yrly/yrly-app-modals.jpg
+      - imageSrc: /assets/img/yrly/yrly-app-modals.jpg
         imageAlt: YRLY Modal Windows
     - text: >  
         The YRLY logo represents a YRLY report: the letters are stacked in the container rectangle like the pages in a report. The logo is responsive so that it can be used in smaller spaces where the primary vertical logo may not function as well, for example, in the app header.    
     - image:
-      - imageSrc: assets/img/yrly/yrly-logos.jpg
+      - imageSrc: /assets/img/yrly/yrly-logos.jpg
         imageAlt: YRLY Logos
     - text: >    
         The initial homepage highlights the benefits and features of YRLY. The site will grow with the launch of the app to include a Theme Gallery, Pricing, a thorough Help section, and other pages.
     - image:
-      - imageSrc: assets/img/yrly/yrly-homepage.jpg
+      - imageSrc: /assets/img/yrly/yrly-homepage.jpg
         imageAlt: YRLY Homepage
     - text: >
         The hero image is an SVG that I created in Illustrator and animated using Greensock. The combination of technologies enables me to create complex animations quickly and ensure cross-browser compatibility, while maintaining small file sizes and high frame rates. 
@@ -185,9 +185,9 @@ pages:
     url: /project-newhudson.html
     category: project
     tags: [Website UX/UI Design]
-    thumbSrc: assets/img/thumbs/nhf2017-thumb.jpg
+    thumbSrc: /assets/img/thumbs/nhf2017-thumb.jpg
     thumbAlt: New Hudson Facades
-    thumbBgSrc: assets/img/thumbs/bg-pattern-test.png
+    thumbBgSrc: /assets/img/thumbs/bg-pattern-test.png
     thumbBgAlt: Pattern
     content:
     - lede: >
@@ -219,9 +219,9 @@ pages:
     url: /project-causeengine.html
     category: project
     tags: [Website & Web App UX/UI Design, Illustration, Animation]
-    thumbSrc: assets/img/thumbs/causeengine-thumb.jpg
+    thumbSrc: /assets/img/thumbs/causeengine-thumb.jpg
     thumbAlt: CauseEngine
-    thumbBgSrc: assets/img/thumbs/bg-pattern-test.png
+    thumbBgSrc: /assets/img/thumbs/bg-pattern-test.png
     thumbBgAlt: Pattern
     content:
     - lede: >
@@ -254,9 +254,9 @@ pages:
     url: /project-vynamic.html
     category: project
     tags: [Mobile App UX Design]
-    thumbSrc: assets/img/thumbs/vynamic-thumb.jpg
+    thumbSrc: /assets/img/thumbs/vynamic-thumb.jpg
     thumbAlt: Vynamic
-    thumbBgSrc: assets/img/thumbs/bg-pattern-test.png
+    thumbBgSrc: /assets/img/thumbs/bg-pattern-test.png
     thumbBgAlt: Pattern
     content:
     - lede: >
@@ -285,53 +285,53 @@ skills:
     subTitle: Title ipsum dolor sit amet
     text: > 
       Branding, typography... love of design history.
-    imageSrc: assets/img/thumbs/yrly-thumb.jpg
+    imageSrc: /assets/img/placeholder.png
     imageAlt: Image 1
 
   - title: UX/UI Design
     subTitle: I design systems, not just pages  
     text: > 
       I design systems, not just pages, that fit client needs and project goals.
-    imageSrc: image1.png
+    imageSrc: /assets/img/placeholder.png
     imageAlt: Image 1
 
   - title: IA & Content Strategy
     subTitle: Title ipsum dolor sit amet
     text: >
       Clear organization and concise writing are essential to a successful design.
-    imageSrc: image2.png
+    imageSrc: /assets/img/placeholder.png
     imageAlt: Image 2
 
   - title: Prototyping
     subTitle: Title ipsum dolor sit amet
     text: >
       Invision and Craft plugin...
-    imageSrc: image3.png
+    imageSrc: /assets/img/placeholder.png
     imageAlt: Image 3
 
   - title: Front End Development
     subTitle: Title ipsum dolor sit amet
     text: >
       HTML, CSS/SASS, JS, Gulp, Git. Check out the <a href="case-study.html">case study</a> for my specific abilities.
-    imageSrc: image4.png
+    imageSrc: /assets/img/placeholder.png
     imageAlt: Image 4
 
   - title: Illustration
     subTitle: Title ipsum dolor sit amet
     text: Dolor sit amet
-    imageSrc: image5.png
+    imageSrc: /assets/img/placeholder.png
     imageAlt: Image 5
 
   - title: Animation
     subTitle: Title ipsum dolor sit amet
     text: Dolor sit amet
-    imageSrc: image6.png
+    imageSrc: /assets/img/placeholder.png
     imageAlt: Image 6
 
   - title: Project Management
     subTitle: Title ipsum dolor sit amet
     text: I'm happy to listen and not be the jerk designer.
-    imageSrc: image7.png
+    imageSrc: /assets/img/placeholder.png
     imageAlt: Image 7
 
 wrapper:    

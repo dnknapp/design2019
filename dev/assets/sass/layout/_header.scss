@@ -7,15 +7,36 @@ header {
 
 .header-inner {
   display: grid;
-  grid-column-gap: 20px;
-  grid-template-columns: 3rem 1fr;
+  grid-column-gap: 1.5rem;
+  grid-template-columns: 40px 1fr;
   align-items: flex-start;
   margin: 1rem;
 }
 .header-nav-button {
+  
+  // height: 40px;
+  // width: 40px;
+  background-color: transparent;
+}
+
+.nav-line-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
   grid-column-start: 1;
   height: 40px;
   width: 40px;
+  padding: 12px 10px;
+}
+
+.nav-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: $color-main;
+  // border-top: 2px solid $color-main;
+  // margin: .5rem 0;
+
 }
 
 .header-title-wrapper {
@@ -23,12 +44,13 @@ header {
   flex-wrap: wrap;
   grid-column-start: 2;
   justify-content: space-between;
-  @include propRem(padding, 6px, 0, 0, 0);
+  padding: .5rem 0 0 0;
 }
 
 .header-subtitle-wrapper {
   display: flex;
   flex-wrap: wrap;
+  padding-top: 5px;
 }
 
 .header-subtitle {
@@ -53,4 +75,8 @@ nav {
   width: 50%;
   margin: 3rem 0 0 0;
   grid-column-start: 2;
+}
+
+nav a.active {
+  color: $color-roman;
 }

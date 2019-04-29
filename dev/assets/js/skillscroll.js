@@ -1,6 +1,6 @@
 // Skills Arrow Button using GSAP
-export function skillScroll(){
-  const skillContainer = document.querySelector(".skill-card-container");
+export default function skillScroll(){
+  let skillContainer = document.querySelector(".skill-card-container");
   
   if (skillContainer) { // Run script only if skillContainer exists
   const skillArrowL = document.querySelector(".btn-skill.btn-arrow-left"),
@@ -22,6 +22,7 @@ export function skillScroll(){
         scrollSpeed = .5, 
         ticking = false,
         onresize = function(e) {
+          let skillContainer = document.querySelector(".skill-card-container");
           if (skillContainer) {
             let mediaMed = window.matchMedia("(min-width: 768px)").matches, // Update when window size changes
                 mediaWide = window.matchMedia("(min-width: 1200px)").matches,

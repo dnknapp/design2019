@@ -12,6 +12,7 @@ img {
   background: transparent;
   padding: 0;
   border: 0;
+  cursor: pointer;
   &:focus {
       outline: 0;
   }
@@ -44,6 +45,8 @@ img {
 //   outline-color: lightgreen;
 // }
 
+
+
 hr {
   border-top: 2px solid $color-main;
   margin: 1rem 0;
@@ -65,19 +68,13 @@ ul {
   margin: 0 .25rem .25rem 0;
 } 
 
+
+
 // .transition {
-//   position: absolute;
-//   width: 100%;
-//   height: 100vh;
+//   position: fixed;
+//   // top: 300px;
+//   width: 300px;
+//   height: 300px;
 //   background-color: red;
 //   z-index: 100;
 // }
-
-.transition {
-  position: fixed;
-  // top: 300px;
-  width: 300px;
-  height: 300px;
-  background-color: red;
-  z-index: 100;
-}

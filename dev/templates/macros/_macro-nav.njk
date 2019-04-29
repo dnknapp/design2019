@@ -1,4 +1,4 @@
-{% macro navList(url, title, activePage="Home") %}
+{% macro navList(url, title, activePage) %}
 
     <li class="h2"><a href="{{ url }}" class="{% if activePage == title %} active {% else %} {% endif %}">{{ title }}</a></li>
 
