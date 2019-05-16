@@ -30,28 +30,47 @@
   #{$property}: $remValues; 
 }
 
-
+//Set page margin
 @mixin page-margins($width: 90%) {
   width: $width;
   margin-left: auto;
   margin-right: auto;
 }  
 
-@mixin grid-base($cols) {
-  @include page-margins();
-  display: grid;
-  grid-gap: 3rem;
-  grid-template-columns: 1fr;
-  // justify-items: start;
-  // align-items: start;
-  @include mappy-bp(med) {  
-    grid-template-columns: repeat($cols, 1fr);
-  }
-}
 
-@mixin grid-col($col-start, $col-span) {
-  grid-column: 1;
-  @include mappy-bp(med) {
-    grid-column: $col-start / span $col-span;
+//Generate Base Grid 
+//12 Columns
+//CSS format: grid-base-4 for a for column grid
+@mixin grid-base() {
+  @for $col from 1 through 12 {
+    .grid-base-#{$col} {
+      @include page-margins();
+      display: grid;
+      grid-gap: 3rem;
+      grid-template-columns: 1fr;
+      @include mappy-bp(med) {  
+        grid-template-columns: repeat($col, 1fr);
+      }
+    }
   }
 }
+@include grid-base();
+
+
+//Generate Starting Columns and Spans from mixin
+//Css format: grid-col-2-2 start at column 2 and span 2. This is using spans, not end lines.
+@mixin grid-col() {
+  @for $col-start from 1 through 12 {
+    @for $col-span from 1 through 12 {
+      @if 13 - $col-start >= $col-span {
+        .grid-col-#{$col-start}-#{$col-span} {
+          grid-column: 1;
+          @include mappy-bp(med) {
+          grid-column: $col-start / span $col-span;
+          } 
+        }
+      }
+    }
+  }
+}
+@include grid-col();

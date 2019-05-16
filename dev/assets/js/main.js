@@ -16,6 +16,7 @@ let options = {
                 opacity: 1,
                 onComplete: next
             });
+            console.log("animated")
             // next();
         },
         out: function(next){
@@ -44,7 +45,7 @@ const swupjs = new Swupjs(options);
 
 // toggleNav()
 
-
+// Initualize all scripts
 function init() {
   // Init Nav
   navTweenSet(); // Sets up menu items for animation 
@@ -56,7 +57,8 @@ function init() {
   }
 }
 init();
-// Reload scripts that run in content that changes, ie, Main, but not Header  
+
+// Re-initualize scripts that run in content that changes, ie, in Main, but not in Header  
 document.addEventListener('swup:contentReplaced', function () {
   navTweenSet(); // Sets up menu items for animation
   navLinkListener(); // Closes menu when menu item is clicked

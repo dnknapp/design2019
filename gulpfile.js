@@ -96,6 +96,7 @@ function nunjucks(done){ // Compile pages using data from a YAML source
 };
 
 //I can't figure out how to run different tasks for js/libs.js and js/main.js, so the same task is repeated
+
 function libs(done){
   jsLibs.map( function(entry){
     return browserify({
